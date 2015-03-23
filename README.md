@@ -3,6 +3,6 @@ A goto place for learning automation tools with Q&amp;A format training. Startin
 
 Project Environment
 ===================
-Windows 8.1 64-bit
-ruby 2.1.5p273
-Rails 4.1.8
+</br>Windows 8.1 64-bit
+</br>ruby 2.1.5p273
+</br>Rails 4.1.8
