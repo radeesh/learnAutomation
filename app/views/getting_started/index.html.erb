@@ -2,3 +2,19 @@
 <p>app/views/getting_started/index.html.erb</p>
 <p>Ruby - Cucumber and Capybara</p>
 <p><%= @message %></p>
+<%= form_tag("/getting_started/index", method: "get") do %>
+<p>
+Feature file has the following step
+</br>When I click "Balloons"
+</p>
+<p>How to match the argument in step definition
+</br>When /^I click <%= text_field_tag(:q,"Answer Here") %>$/ do |arg1|
+  </br>pending # express the regexp above with the code you wish you had 
+</br>end</p>
+
+  <%= submit_tag("That was easy.") %>
+<p>
+Note: Answer is "(.*?)"
+</p>
+
+<% end %>
