@@ -1,20 +1,30 @@
-<h1>LearnAutomation</h1>
 <p>app/views/getting_started/index.html.erb</p>
 <p>Ruby - Cucumber and Capybara</p>
-<p><%= @message %></p>
 <%= form_tag("/getting_started/index", method: "get") do %>
 <p>
 Feature file has the following step
-</br>When I click "Balloons"
+
+How to match the argument in step definition?
+<div class="question">
+When I click "Balloons"
 </p>
-<p>How to match the argument in step definition
-</br>When /^I click <%= text_field_tag(:q,"Answer Here") %>$/ do |arg1|
+<p>
+When /^I click <%= text_field_tag(:q1a1,"Answer Here") %>$/ do |arg1|
   </br>pending # express the regexp above with the code you wish you had 
 </br>end</p>
 
-  <%= submit_tag("That was easy.") %>
-<p>
+<%= submit_tag("Click to Submit") %>
+<div id="message"><%= @answer1 %></div>
 Note: Answer is "(.*?)"
-</p>
+</div>
 
+<div class="question">
+Then I should see 3 Movies and 12 Actors
+<p>Then I should see <%= text_field_tag(:q2a1,"Answer Here") %>  and <%= text_field_tag(:q2a2,"Answer Here") %> Actors$/ do |arg1,arg2|
+  </br>pending # express the regexp above with the code you wish you had 
+</br>end</p>
+<%= submit_tag("Click to Submit") %>
+<div id="message"><%= @answer2 %></div>
+Note: Answer is (\d+) and (\d+)
+</div>
 <% end %>
