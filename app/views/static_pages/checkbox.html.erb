@@ -1,2 +1,125 @@
-<h1>StaticPages#checkbox</h1>
-<p>Find me in app/views/static_pages/checkbox.html.erb</p>
+<%= render "layouts/header" %>
+<div class="mui-row" >
+  <div class="mui-col-xs-1 mui-col-md-4"></div>
+  <div class="mui-col-xs-6 mui-col-md-4">
+	<div class="align-center">
+	<div class="mui-text-display2 mui-text-black" id="title">Checkbox</div>
+		<h4 id="subtitle">How are you
+			<script type="text/javascript">
+				document.write(getURLParameter('username'));
+			</script>?
+		</h4>
+	</div>
+	<form id="test-checkbox">
+	  <div class="mui-checkbox">
+		<label>
+		  <input type="checkbox" value="">
+		  Mushrooms
+		</label>
+	  </div>
+	  <div class="mui-checkbox">
+		<label>
+		  <input type="checkbox" value="" disabled>
+		  Dried Tomatoes
+		</label>
+	  </div>
+	  <div class="mui-checkbox">
+		<label>
+		  <input type="checkbox" value="">
+		  Anchovies
+		</label>
+	  </div>
+	  <div class="mui-checkbox">
+		<label>
+		  <input type="checkbox" value="">
+		  Chicken
+		</label>
+	  </div>
+	  <div class="mui-checkbox">
+		<label>
+		  <input type="checkbox" value="">
+		  Jalapenos
+		</label>
+	  </div>
+	  <div class="mui-checkbox">
+		<label>
+		  <input type="checkbox" value="">
+		  Banana Peppers
+		</label>
+	  </div>	  
+	  </form>
+	  <form id="text-options">
+	  <div class="mui-radio">
+		<label>
+		  <input type="radio"
+				 name="optionsRadios"
+				 id="optionsRadios1"
+				 value="option1"
+				 checked>
+		  Option one
+		</label>
+	  </div>
+	  <div class="mui-radio">
+		<label>
+		  <input type="radio"
+				 name="optionsRadios"
+				 id="optionsRadios2"
+				 value="option2">
+		  Option two
+		</label>
+	  </div>
+	  <div class="mui-radio">
+		<label>
+		  <input type="radio"
+				 name="optionsRadios"
+				 id="optionsRadios3"
+				 value="option3"
+				 disabled>
+		  Option three is disabled
+		</label>
+	  </div>
+	</form>
+	</div>	
+  <div class="mui-col-xs-0 mui-col-md-4"></div>
+  </div>
+  
+ <div class="mui-row" id="section-step">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-9 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">step definition</div>
+			<p><pre>
+ Scenario: Testing the toppings checkbox
+  Given I am on Homepage
+  Then I select following toppings
+    | Mushrooms |
+    | Banana Peppers |
+    | Chicken |
+			</pre></p>
+  </div>
+  <div class="mui-col-xs-9 mui-col-md-6">
+			<pre><code class="language-ruby">
+Given(/^I am on Homepage$/) do
+	visit '/homepage.html?username=user'
+end
+
+Then(/^I select following toppings$/) do |toppings|
+	toppings.raw.each do |topping|
+		check(topping[0])
+	end
+end
+			</code></pre>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+	<div class="mui-row">
+	  <div class="mui-col-xs-3 mui-col-md-3"><div class="align-right"><form method="get" action="login.html">
+		  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised" id="login">Prev: Text Fields</button>
+	</form></div></div>
+	<div class="mui-col-xs-2 mui-col-md-6"></div>
+	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right"><div><form method="get" action="homepage.html">
+		  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised" id="login">Next: Option</button>
+	</form></div></div>
+	</div>	
+	<div id="footer">
+	</div>
