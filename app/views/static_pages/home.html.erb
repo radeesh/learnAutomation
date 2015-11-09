@@ -1,0 +1,158 @@
+<%= render "layouts/header" %>
+<div class="mui-row" id="section-setup">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-12 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">setup</div>
+	<p>
+		Install <a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby</a>
+		and then install the required gems, on windows there are installer files to installs
+		ruby. To install Cucumber in windows <a href="">DevKit</a> and in linux Devel packages must be installed
+	</p>  
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-6">
+	<pre><code class="language-ruby">
+gem install capybara
+gem install cucumber
+	</code></pre>  
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+<div class="mui-row" id="section-verify">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-12 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">verify installation</div>
+		<p>
+		Once successfully installed just type 'cucumber', a message should be displayed prompting to create a features directory.
+		On linux you could create the folder structure using 'cucumber --init' from within the project folder where the tests will reside.
+		</p>
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-6">
+			<pre><code class="language-gherkin">
+rubyWorks@desktop:~/projects$ cucumber			
+No such file or directory - features. Please create a features directory to get started.</code>
+<code class="language-ruby">
+rubyWorks@desktop:~/projects$ cucumber --init
+	create features
+	create features/step_definition
+	create features/support
+	create features/support/env.rb
+			</code></pre>		
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+<div class="mui-row" id="section-folders">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-12 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">folder structure</div>
+		<p>
+			<b>features - </b>Place the ".feature" files in this directory, each feature file has scenarios and background which relates
+			to the story in your sprint.</br></br>
+			<b>features/steps - </b>Each step needs to be defined, this is done in any file within the steps folder.
+			There are no naming syntax that's needed for the files. When cucumber is executed it looks
+			for the steps based on the regular expression patterns and finds the match within the folder
+			irrespective of the file name.</br></br>
+			<b>features/support - </b>These contain additional support files which are used for 
+			advanced capabilities, env.rb has actions that needs to be performed before the tests are run
+			and hooks can be used to put any tag based actions that needs to be performed, like setup or clear data
+		</p>
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-6">
+			<pre><code class="language-ruby">
+project
+|-- features
+|		|-- steps
+|		|		|-- search_step.rb
+|		|-- support
+|		|		|-- env.rb
+|		|		|-- hooks.rb (optional)
+|		|-- login.features
+|		|-- search.feature
+|-- Gemfile
+|-- results (optional)
+			</code></pre>	
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+<div class="mui-row" id="section-feature">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-12 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">features</div>
+	<p>
+		A feature file ends with '.feature' extension, this is a normal text file and can be written in any text
+		editing program or an IDE of your choice, the feature file will contain a brief description of the 
+		scenarios that it has followed by individual scenarios each in its own block. The feature file can also have
+		background and Scenario Outline. 
+	</p>
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-6">
+			<pre><code class="language-gherkin">
+Feature: Login to application
+	This is a text login feature anything goes here
+	describing the module or group of scenarios that
+	this feature will contain
+			</code></pre>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+<div class="mui-row" id="section-scenario">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-12 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">scenario</div>
+	<p>
+		Each Scenario ideally should flow end to end, independent of other scenario. Following keywords - 
+		<b>Given, When, Then, And</b> are be used and repeated if necessary in any order to make a meaningful
+		and readable scenarios.
+	</p>
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-6">
+			<pre><code class="language-gherkin">
+Scenario: Login using valid id
+	Given I am on Login page
+	When I sign in as a valid user
+	Then I should see the home page
+			</code></pre>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+<div class="mui-row" id="section-errors">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-12 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">errors</div>
+	<p>
+		mkmf.rb can't find header files for ruby at /usr/lib/ruby/ruby.h
+	</p>
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-6">
+			<pre><code class="language-gherkin">
+Ubuntu:			
+sudo apt-get install ruby-dev
+Red Hat:
+sudo yum install ruby-devel
+			</code></pre>	
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+    <!--
+
+    content goes here
+
+    -->
+	<div class="mui-row">
+		<div class="mui-col-xs-3 mui-col-md-3"></div>
+		<div class="mui-col-xs-2 mui-col-md-6"></div>
+		<div class="mui-col-xs-3 mui-col-md-3" class="align-right">
+			<div>
+				<%= form_tag login_path do %>
+					<%= submit_tag("Next: Text Fields", class: "mui-btn mui-btn-default mui-btn-raised", id: "login") %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	
+	<div id="footer">
+	</div>
