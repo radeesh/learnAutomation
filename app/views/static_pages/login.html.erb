@@ -1,2 +1,113 @@
-<h1>StaticPages#login</h1>
-<p>Find me in app/views/static_pages/login.html.erb</p>
+<%= render "layouts/header" %>
+<div class="mui-row" >
+  <div class="mui-col-xs-1 mui-col-md-4"></div>
+  <div class="mui-col-xs-6 mui-col-md-4" style="text-align:center;">
+	<div class="mui-text-display2 mui-text-black" id="title">Login</div><h4 id="subtitle">Awesome Login</h4>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-4"></div>
+  </div>
+  
+  <div class="mui-row">
+  <div class="mui-col-xs-1 mui-col-md-4"></div>
+  <div class="mui-col-xs-6 mui-col-md-4"><form method="get" action="homepage.html">
+  <div class="mui-form-group">
+    <input type="text" class="mui-form-control" name="username" id="username" required>
+    <label class="mui-form-floating-label">Username</label>
+  </div>
+  <div class="mui-form-group">
+    <input type="password" class="mui-form-control" id="password" required>
+    <label class="mui-form-floating-label">Password</label>
+  </div>
+  <div class="align-right">
+  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised" id="login">Log In</button>
+  </div>
+</form></div>
+  <div class="mui-col-xs-6 mui-col-md-4"></div>
+  </div>
+
+ <div class="mui-row" id="section-step">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-9 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">step definition</div>
+	<p><pre>
+Given I am on Login page
+When I sign in as a valid user
+Then I should see the home page
+	</pre></p>
+  </div>
+  <div class="mui-col-xs-9 mui-col-md-6">
+			<pre><code class="language-ruby">
+Given(/^I am on Login page$/) do
+  visit '/'
+end
+
+When(/^I sign in as a valid user$/) do
+	find(:css, "#username").set 'user@example.com'
+	find(:css, "#password").set 'password'
+	find_button('Log In').click
+end
+
+Then(/^I should see the home page$/) do
+	expect(page).to have_content('Welcome')
+end
+			</code></pre>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+ <div class="mui-row" id="section-step">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-9 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">support/env.rb</div>
+			<p>
+				This has all the initial requires and driver setup, like which browser to use and what kind of data setup or configuration settings are required
+			</p>	
+  </div>
+  <div class="mui-col-xs-9 mui-col-md-6">
+			<pre><code class="language-ruby">
+require 'rubygems'
+require 'capybara'
+
+require 'capybara/rspec/matchers'
+Capybara.default_driver = :selenium
+
+#Below Code form cucumber.rb manually copied here to avoid reset session after each scenario
+#commented the reset_sessions part
+World(Capybara::DSL)
+World(Capybara::RSpecMatchers)
+
+#After do
+#  Capybara.reset_sessions!
+#end
+
+Capybara.app_host = 'http://website.radeesh.com'
+
+Before do
+  Capybara.use_default_driver
+end
+			</code></pre>		
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+	<div class="mui-row">
+	  <div class="mui-col-xs-3 mui-col-md-3"><div class="align-right">
+	  	  <div>
+			  <%= form_tag root_path, :method => :get do %>
+			  <%= submit_tag("Prev: Introduction", class: "mui-btn mui-btn-default mui-btn-raised", id: "home") %>
+		    <% end %>
+		  </div>
+	</div></div>
+	<div class="mui-col-xs-2 mui-col-md-6"></div>
+	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right">
+	  	  <div>
+			  <%= form_tag checkbox_path, :method => :get do %>
+			  <%= submit_tag("Next: Checkbox", class: "mui-btn mui-btn-default mui-btn-raised", id: "login") %>
+		    <% end %>
+		  </div>
+	</div></div>
+	</div>	
+	
+	<div id="footer">
+	</div>
+
