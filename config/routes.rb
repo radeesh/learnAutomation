@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'login' => 'static_pages#login'
   get 'checkbox' => 'static_pages#checkbox'
+  get 'option' => 'static_pages#option'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

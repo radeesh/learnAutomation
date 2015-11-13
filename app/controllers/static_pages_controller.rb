@@ -3,4 +3,8 @@ class StaticPagesController < ApplicationController
   end
   def login
   end
+  def checkbox
+  end
+  def option
+  end  
 end

@@ -5,5 +5,16 @@ class StaticPagesControllerTest < ActionController::TestCase
     get :home
     assert_response :success
   end
-
+  test "should get login" do
+    get :login
+    assert_response :success
+  end
+  test "should get checkbox" do
+    get :checkbox
+    assert_response :success
+  end
+  test "should get option" do
+    get :option
+    assert_response :success
+  end    
 end
