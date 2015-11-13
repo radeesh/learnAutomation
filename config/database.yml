@@ -25,14 +25,16 @@ development:
   adapter: postgresql
   encoding: unicode
   database: automationbug_development
+  host: localhost
   pool: 5
-  username: myapp
-  password: password1
+  username: abug
+  password: abug1
 
 test:
   adapter: postgresql
   encoding: unicode
   database: automationbug_test
+  host: localhost
   pool: 5
-  username: myapp
-  password: password1  
+  username: abug
+  password: abug1  
