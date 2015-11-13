@@ -5,9 +5,7 @@
 	<div class="align-center">
 	<div class="mui-text-display2 mui-text-black" id="title">Checkbox</div>
 		<h4 id="subtitle">How are you
-			<script type="text/javascript">
-				document.write(getURLParameter('username'));
-			</script>?
+				<%=  params[:username] %>?
 		</h4>
 	</div>
 	<form id="test-checkbox">
@@ -99,7 +97,7 @@
   <div class="mui-col-xs-9 mui-col-md-6">
 			<pre><code class="language-ruby">
 Given(/^I am on Homepage$/) do
-	visit '/homepage.html?username=user'
+	@browser.goto("localhost:3000/checkbox")
 end
 
 Then(/^I select following toppings$/) do |toppings|

@@ -6,18 +6,29 @@
 	<p>
 		Install <a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby</a>
 		and then install the required gems, on windows there are installer files to installs
-		ruby. To install Cucumber in windows <a href="">DevKit</a> and in linux Devel packages must be installed
+		ruby. To install Cucumber in windows <a href="">DevKit</a> and in linux Devel packages must be installed.
+		 Ideally in a development environment all required gem installation are done using bundler.
 	</p>  
   </div>
   <div class="mui-col-xs-12 mui-col-md-6">
 	<pre><code class="language-ruby">
 gem install capybara
 gem install cucumber
+
+#Gem install using bundler
+gem install bundler
+bundle install
+#or
+bundle install --path vendor/bundle
+
+#You should get something like this after it completes
+Bundle complete! 22 Gemfile dependencies, 74 gems now installed.
+Bundled gems are installed into ./vendor/bundle.
+
 	</code></pre>  
   </div>
   <div class="mui-col-xs-0 mui-col-md-1"></div>
 </div>
-
 <div class="mui-row" id="section-verify">
   <div class="mui-col-xs-0 mui-col-md-1"></div>
   <div class="mui-col-xs-12 mui-col-md-4" >

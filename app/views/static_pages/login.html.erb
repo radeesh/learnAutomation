@@ -9,7 +9,7 @@
   
   <div class="mui-row">
   <div class="mui-col-xs-1 mui-col-md-4"></div>
-  <div class="mui-col-xs-6 mui-col-md-4"><form method="get" action="homepage.html">
+  <div class="mui-col-xs-6 mui-col-md-4"><%= form_tag checkbox_path, :method => :get do %>
   <div class="mui-form-group">
     <input type="text" class="mui-form-control" name="username" id="username" required>
     <label class="mui-form-floating-label">Username</label>
@@ -19,9 +19,10 @@
     <label class="mui-form-floating-label">Password</label>
   </div>
   <div class="align-right">
-  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised" id="login">Log In</button>
+  <%= submit_tag("Log In", class: "mui-btn mui-btn-default mui-btn-raised", id: "login") %>
   </div>
-</form></div>
+  <% end %>
+  </div>
   <div class="mui-col-xs-6 mui-col-md-4"></div>
   </div>
 
@@ -38,17 +39,17 @@ Then I should see the home page
   <div class="mui-col-xs-9 mui-col-md-6">
 			<pre><code class="language-ruby">
 Given(/^I am on Login page$/) do
-  visit '/'
+  @browser.goto("localhost:3000/login")
 end
 
 When(/^I sign in as a valid user$/) do
-	find(:css, "#username").set 'user@example.com'
-	find(:css, "#password").set 'password'
-	find_button('Log In').click
+  @browser.text_field(:id, "username").set 'user@example.com'
+  @browser.text_field(:id, "password").set 'password'
+  @browser.button(:value, "Log In").click
 end
 
 Then(/^I should see the home page$/) do
-	expect(page).to have_content('Welcome')
+	expect(@browser.text).to have_content('Checkbox')
 end
 			</code></pre>
   </div>
@@ -60,30 +61,46 @@ end
   <div class="mui-col-xs-9 mui-col-md-4" >
 	<div class="mui-text-display1 mui-text-black">support/env.rb</div>
 			<p>
-				This has all the initial requires and driver setup, like which browser to use and what kind of data setup or configuration settings are required
+				This has all the initial requires and driver setup, like which browser to use and what kind of data setup or configuration settings are required. IE requires internet explorer driver to be loaded in the environment path. @browser is defined as an instance object and being used in step definitions.
 			</p>	
   </div>
   <div class="mui-col-xs-9 mui-col-md-6">
 			<pre><code class="language-ruby">
-require 'rubygems'
-require 'capybara'
+require 'watir-webdriver'
+require 'rspec/expectations'
+require 'pry'
+require 'os'
 
-require 'capybara/rspec/matchers'
-Capybara.default_driver = :selenium
+browser=nil
 
-#Below Code form cucumber.rb manually copied here to avoid reset session after each scenario
-#commented the reset_sessions part
-World(Capybara::DSL)
-World(Capybara::RSpecMatchers)
+#Autoload chrome driver based on the OS
+if OS.windows?
+  ENV['PATH'] = File.join(File.dirname(__FILE__), '..', '..', 'tools', 'chromedriver', 'windows') + ';' + ENV['PATH']
+elsif OS.mac?
+  ENV['PATH'] = File.join(File.dirname(__FILE__), '..', '..', 'tools', 'chromedriver', 'mac') + ':' + ENV['PATH']
+elsif OS.linux? && OS.bits == 32
+  ENV['PATH'] = File.join(File.dirname(__FILE__), '..', '..', 'tools', 'chromedriver', 'linux_32') + ':' + ENV['PATH']
+elsif OS.linux? && OS.bits == 64
+  ENV['PATH'] = File.join(File.dirname(__FILE__), '..', '..', 'tools', 'chromedriver', 'linux_64') + ":" + ENV['PATH']
+else
+  p 'OS not known'
+end
 
-#After do
-#  Capybara.reset_sessions!
-#end
+#Default to chrome unless specified
+ENV['BROWSER'] ||= 'chrome'
 
-Capybara.app_host = 'http://website.radeesh.com'
+if ENV['BROWSER'] == 'chrome'
+  browser = Watir::Browser.new :chrome
+elsif ENV['BROWSER'] == 'firefox'
+  browser = Watir::Browser.new :firefox
+end
 
 Before do
-  Capybara.use_default_driver
+  @browser = browser
+end
+ 
+at_exit do
+  browser.close
 end
 			</code></pre>		
   </div>
@@ -102,7 +119,7 @@ end
 	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right">
 	  	  <div>
 			  <%= form_tag checkbox_path, :method => :get do %>
-			  <%= submit_tag("Next: Checkbox", class: "mui-btn mui-btn-default mui-btn-raised", id: "login") %>
+			  <%= submit_tag("Next: Checkbox", class: "mui-btn mui-btn-default mui-btn-raised", id: "checkbox") %>
 		    <% end %>
 		  </div>
 	</div></div>
