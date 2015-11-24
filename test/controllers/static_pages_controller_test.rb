@@ -17,4 +17,8 @@ class StaticPagesControllerTest < ActionController::TestCase
     get :option
     assert_response :success
   end    
+  test "should get waiting" do
+    get :waiting
+    assert_response :success
+  end
 end

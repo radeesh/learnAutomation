@@ -1,2 +1,86 @@
-<h1>StaticPages#option</h1>
-<p>Find me in app/views/static_pages/option.html.erb</p>
+<%= render "layouts/header" %>
+<div class="mui-row" >
+  <div class="mui-col-xs-1 mui-col-md-4"></div>
+  <div class="mui-col-xs-6 mui-col-md-4">
+	<div class="align-center">
+	<div class="mui-text-display2 mui-text-black" id="title">Checkbox</div>
+		<h4 id="subtitle">How are you
+				<%=  params[:username] %>?
+		</h4>
+	</div>
+	  <form id="text-options">
+	  <div class="mui-radio">
+		<label>
+		  <input type="radio"
+				 name="optionsRadios"
+				 id="BMW"
+				 value="BMW"
+				 checked>
+		  BMW
+		</label>
+	  </div>
+	  <div class="mui-radio">
+		<label>
+		  <input type="radio"
+				 name="optionsRadios"
+				 id="Audi"
+				 value="Audi">
+		  Audi
+		</label>
+	  </div>
+	  <div class="mui-radio">
+		<label>
+		  <input type="radio"
+				 name="optionsRadios"
+				 id="Porsche"
+				 value="Porsche"
+				 disabled>
+		  Porsche (Disabled)
+		</label>
+	  </div>
+	</form>
+	</div>	
+  <div class="mui-col-xs-0 mui-col-md-4"></div>
+  </div>
+  
+ <div class="mui-row" id="section-step">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-9 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">step definition</div>
+			<p><pre>
+ Scenario: Testing the options
+  Given I am on Options page
+  Then I choose "BMW"
+			</pre></p>
+  </div>
+  <div class="mui-col-xs-9 mui-col-md-6">
+			<pre><code class="language-ruby">
+Given(/^I am on Options page$/) do
+  @browser.goto("#{@url}/option")
+end
+
+Then(/^I choose "(.*?)" vehicle$/) do |vehicle|
+  @browser.radio(:value => vehicle).set
+end
+			</code></pre>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+	  <div class="mui-col-xs-3 mui-col-md-3"><div class="align-right">
+	  	  <div>
+			  <%= form_tag checkbox_path, :method => :get do %>
+			  <%= submit_tag("Prev: Checkbox", class: "mui-btn mui-btn-default mui-btn-raised", id: "checkbox") %>
+		    <% end %>
+		  </div>
+	</div></div>
+	<div class="mui-col-xs-2 mui-col-md-6"></div>
+	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right">
+	  	  <div>
+			  <%= form_tag waiting_path, :method => :get do %>
+			  <%= submit_tag("Next: Waiting", class: "mui-btn mui-btn-default mui-btn-raised", id: "waiting") %>
+		    <% end %>
+		  </div>
+	</div></div>		
+	<div id="footer">
+	</div>

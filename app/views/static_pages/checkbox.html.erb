@@ -11,72 +11,41 @@
 	<form id="test-checkbox">
 	  <div class="mui-checkbox">
 		<label>
-		  <input type="checkbox" value="">
+		  <input type="checkbox" value="Mushrooms">
 		  Mushrooms
 		</label>
 	  </div>
 	  <div class="mui-checkbox">
 		<label>
-		  <input type="checkbox" value="" disabled>
+		  <input type="checkbox" value="Dried Tomatoes" disabled>
 		  Dried Tomatoes
 		</label>
 	  </div>
 	  <div class="mui-checkbox">
 		<label>
-		  <input type="checkbox" value="">
+		  <input type="checkbox" value="Anchovies">
 		  Anchovies
 		</label>
 	  </div>
 	  <div class="mui-checkbox">
 		<label>
-		  <input type="checkbox" value="">
+		  <input type="checkbox" value="Chicken">
 		  Chicken
 		</label>
 	  </div>
 	  <div class="mui-checkbox">
 		<label>
-		  <input type="checkbox" value="">
+		  <input type="checkbox" value="Jalapenos">
 		  Jalapenos
 		</label>
 	  </div>
 	  <div class="mui-checkbox">
 		<label>
-		  <input type="checkbox" value="">
+		  <input type="checkbox" value="Banana Peppers">
 		  Banana Peppers
 		</label>
 	  </div>	  
 	  </form>
-	  <form id="text-options">
-	  <div class="mui-radio">
-		<label>
-		  <input type="radio"
-				 name="optionsRadios"
-				 id="optionsRadios1"
-				 value="option1"
-				 checked>
-		  Option one
-		</label>
-	  </div>
-	  <div class="mui-radio">
-		<label>
-		  <input type="radio"
-				 name="optionsRadios"
-				 id="optionsRadios2"
-				 value="option2">
-		  Option two
-		</label>
-	  </div>
-	  <div class="mui-radio">
-		<label>
-		  <input type="radio"
-				 name="optionsRadios"
-				 id="optionsRadios3"
-				 value="option3"
-				 disabled>
-		  Option three is disabled
-		</label>
-	  </div>
-	</form>
 	</div>	
   <div class="mui-col-xs-0 mui-col-md-4"></div>
   </div>
@@ -102,7 +71,8 @@ end
 
 Then(/^I select following toppings$/) do |toppings|
 	toppings.raw.each do |topping|
-		check(topping[0])
+		binding.pry
+		@browser.checkbox(:value => topping[0]).set
 	end
 end
 			</code></pre>
@@ -110,14 +80,20 @@ end
   <div class="mui-col-xs-0 mui-col-md-1"></div>
 </div>
 
-	<div class="mui-row">
-	  <div class="mui-col-xs-3 mui-col-md-3"><div class="align-right"><form method="get" action="login.html">
-		  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised" id="login">Prev: Text Fields</button>
-	</form></div></div>
+	  <div class="mui-col-xs-3 mui-col-md-3"><div class="align-right">
+	  	  <div>
+			  <%= form_tag login_path, :method => :get do %>
+			  <%= submit_tag("Prev: Text Fields", class: "mui-btn mui-btn-default mui-btn-raised", id: "login") %>
+		    <% end %>
+		  </div>
+	</div></div>
 	<div class="mui-col-xs-2 mui-col-md-6"></div>
-	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right"><div><form method="get" action="homepage.html">
-		  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised" id="login">Next: Option</button>
-	</form></div></div>
-	</div>	
+	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right">
+	  	  <div>
+			  <%= form_tag option_path, :method => :get do %>
+			  <%= submit_tag("Next: Option", class: "mui-btn mui-btn-default mui-btn-raised", id: "checkbox") %>
+		    <% end %>
+		  </div>
+	</div></div>		
 	<div id="footer">
 	</div>

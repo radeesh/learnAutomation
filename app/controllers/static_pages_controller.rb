@@ -6,5 +6,7 @@ class StaticPagesController < ApplicationController
   def checkbox
   end
   def option
-  end  
+  end 
+  def waiting
+  end     
 end

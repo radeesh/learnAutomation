@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'login' => 'static_pages#login'
   get 'checkbox' => 'static_pages#checkbox'
   get 'option' => 'static_pages#option'
+  get 'waiting' => 'static_pages#waiting'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
