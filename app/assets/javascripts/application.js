@@ -16,3 +16,11 @@
 //= require_tree .
 //= require prism
 //= require mui.min
+
+$(document).on("page:fetch", function(){
+  $(".spinner").show();
+});
+
+$(document).on("page:change", function(){
+  $(".spinner").delay(5000).hide(0);
+});

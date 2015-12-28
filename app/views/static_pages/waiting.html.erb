@@ -1,1 +1,95 @@
-Coming Soon
+<%= render "layouts/header" %>
+<style type="text/css">body {
+	transition: background-color 0.5s ease;
+    //background-color: #d35400 ;
+}</style>
+<style type="text/css">body {
+	transition: background-color 0.5s ease;
+}</style>
+<div class="mui-row" >
+  <div class="mui-col-xs-1 mui-col-md-4"></div>
+  <div class="mui-col-xs-6 mui-col-md-4">
+	<div class="align-center">
+	<div class="mui-text-display2 mui-text-black" id="title">Waiting</div>
+		<h4 id="subtitle">How to wait in Watir?
+		</h4>
+	</div>
+	  <form id="text-options">
+  <div class="mui-form-group">
+    <input type="text" class="mui-form-control" name="name_text" id="name_text" required>
+    <label class="mui-form-floating-label">Name</label>
+  </div>
+  <div class="mui-form-group">
+    <input type="text" class="mui-form-control" id="email_text" required>
+    <label class="mui-form-floating-label">eMail</label>
+  </div>
+	</form>
+	</div>	
+  <div class="mui-col-xs-0 mui-col-md-4"></div>
+  </div>
+  
+ <div class="mui-row" id="section-step">
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+  <div class="mui-col-xs-9 mui-col-md-4" >
+	<div class="mui-text-display1 mui-text-black">step definition</div>
+			<p><pre>
+ Scenario: Wait tests
+  Given I am on waiting page
+  And I wait for page to load
+  Then I enter name
+  And I enter email
+			</pre></p>
+  </div>
+  <div class="mui-col-xs-9 mui-col-md-6">
+			<pre><code class="language-ruby">
+Given(/^I am on waiting page$/) do
+  @browser.goto("#{@url}/waiting")
+end
+
+Then(/^I wait for page to load$/) do
+  @browser.div(:class => "spinner overlay").wait_while_present
+end
+
+And(/^I enter name$/) do
+	@browser.text_field(:id, "name_text").set 'Joe'	
+end
+
+And(/^I enter email$/)do
+	@browser.text_field(:id, "email_text").set 'joe@bigtech.com'
+end
+			</code></pre>
+  </div>
+  <div class="mui-col-xs-0 mui-col-md-1"></div>
+</div>
+
+	  <div class="mui-col-xs-3 mui-col-md-3"><div class="align-right">
+	  	  <div>
+			  <%= form_tag option_path, :method => :get do %>
+			  <%= submit_tag("Prev: Option", class: "mui-btn mui-btn-default mui-btn-raised", id: "option") %>
+		    <% end %>
+		  </div>
+	</div></div>
+	<div class="mui-col-xs-2 mui-col-md-6"></div>
+	  <div class="mui-col-xs-3 mui-col-md-3" class="align-right">
+	  	  <div>
+			  <%= form_tag root_path, :method => :get do %>
+			  <%= submit_tag("Home", class: "mui-btn mui-btn-default mui-btn-raised", id: "Home") %>
+		    <% end %>
+		  </div>
+	</div></div>		
+	<div id="footer">
+	</div>
+<div class="spinner overlay">
+  <div class="sk-cube-grid">
+	Loading... </br>	
+    <div class="sk-cube sk-cube1"></div>
+    <div class="sk-cube sk-cube2"></div>
+    <div class="sk-cube sk-cube3"></div>
+    <div class="sk-cube sk-cube4"></div>
+    <div class="sk-cube sk-cube5"></div>
+    <div class="sk-cube sk-cube6"></div>
+    <div class="sk-cube sk-cube7"></div>
+    <div class="sk-cube sk-cube8"></div>
+    <div class="sk-cube sk-cube9"></div>
+  </div>
+</div>
